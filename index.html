@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>cube64</title>
+</head>
+<body>
+    <div class="gameContainer">
+        <!-- <div class="hide hide--blue"></div>
+        <div class="hide hide--red"></div> -->
+        <h2 class="player-turn">player 1</h2>
+        <div class="board">
+        </div>
+        <div class="selector">
+            <button id="1" class="button button--1"><p class="button--text button--text--1"></p></button>
+            <button id="2" class="button button--2"><p class="button--text button--text--2"></p></button>
+            <button id="3" class="button button--3"><p class="button--text button--text--3"></p></button>
+            <button id="4" class="button button--4"><p class="button--text button--text--4"></p></button>
+            <button id="5" class="button button--5"><p class="button--text button--text--5"></p></button>
+            <button id="6" class="button button--6"><p class="button--text button--text--6"></p></button>
+            <button id="7" class="button button--7"><p class="button--text button--text--7"></p></button>
+            <button id="8" class="button button--8"><p class="button--text button--text--8"></p></button>
+            <button id="9" class="button button--9"><p class="button--text button--text--9"></p></button>
+            <button id="10" class="button button--10"><p class="button--text button--text--10"></p></button>
+            <button id="11" class="button button--11"><p class="button--text button--text--11"></p></button>
+            <button id="12" class="button button--12"><p class="button--text button--text--12"></p></button>
+            <button id="13" class="button button--13"><p class="button--text button--text--13"></p></button>
+            <button id="14" class="button button--14"><p class="button--text button--text--14"></p></button>
+            <button id="15" class="button button--15"><p class="button--text button--text--15"></p></button>
+            <button id="16" class="button button--16"><p class="button--text button--text--16"></p></button>
+        </div>
+        <!-- <div class="side side--top"></div> -->
+        <!-- //front -->
+        <div class="side side--front">
+            <h2 class="side-header">front</h2>
+            <!-- .side-box.front-box--$*16 -->
+            <div class="y1z4 side-box front-box--1">1</div>
+            <div class="y2z4 side-box front-box--2">2</div>
+            <div class="y3z4 side-box front-box--3">3</div>
+            <div class="y4z4 side-box front-box--4">4</div>
+            <div class="y1z3 side-box front-box--5">5</div>
+            <div class="y2z3 side-box front-box--6">6</div>
+            <div class="y3z3 side-box front-box--7">7</div>
+            <div class="y4z3 side-box front-box--8">8</div>
+            <div class="y1z2 side-box front-box--9">9</div>
+            <div class="y2z2 side-box front-box--10">10</div>
+            <div class="y3z2 side-box front-box--11">11</div>
+            <div class="y4z2 side-box front-box--12">12</div>
+            <div class="y1z1 side-box front-box--13">13</div>
+            <div class="y2z1 side-box front-box--14">14</div>
+            <div class="y3z1 side-box front-box--15">15</div>
+            <div class="y4z1 side-box front-box--16">16</div>
+            
+        </div>
+        <!-- back -->
+        <div class="side side--back">
+            <h2 class="side-header">back</h2>
+            <!-- .side-box.back-box--$*16 -->
+            <div class="y4z4 side-box back-box--1">1</div>
+            <div class="y3z4 side-box back-box--2">2</div>
+            <div class="y2z4 side-box back-box--3">3</div>
+            <div class="y1z4 side-box back-box--4">4</div>
+            <div class="y4z3 side-box back-box--5">5</div>
+            <div class="y3z3 side-box back-box--6">6</div>
+            <div class="y2z3 side-box back-box--7">7</div>
+            <div class="y1z3 side-box back-box--8">8</div>
+            <div class="y4z2 side-box back-box--9">9</div>
+            <div class="y3z2 side-box back-box--10">10</div>
+            <div class="y2z2 side-box back-box--11">11</div>
+            <div class="y1z2 side-box back-box--12">12</div>
+            <div class="y4z1 side-box back-box--13">13</div>
+            <div class="y3z1 side-box back-box--14">14</div>
+            <div class="y2z1 side-box back-box--15">15</div>
+            <div class="y1z1 side-box back-box--16">16</div>
+        </div>
+        <!-- left -->
+        <div class="side side--left">
+            <h2 class="side-header">left</h2>
+            <!-- .side-box.left-box--$*16 -->
+            <div class="x1z4 side-box left-box--1">1</div>
+            <div class="x2z4 side-box left-box--2">2</div>
+            <div class="x3z4 side-box left-box--3">3</div>
+            <div class="x4z4 side-box left-box--4">4</div>
+            <div class="x1z3 side-box left-box--5">5</div>
+            <div class="x2z3 side-box left-box--6">6</div>
+            <div class="x3z3 side-box left-box--7">7</div>
+            <div class="x4z3 side-box left-box--8">8</div>
+            <div class="x1z2 side-box left-box--9">9</div>
+            <div class="x2z2 side-box left-box--10">10</div>
+            <div class="x3z2 side-box left-box--11">11</div>
+            <div class="x4z2 side-box left-box--12">12</div>
+            <div class="x1z1 side-box left-box--13">13</div>
+            <div class="x2z1 side-box left-box--14">14</div>
+            <div class="x3z1 side-box left-box--15">15</div>
+            <div class="x4z1 side-box left-box--16">16</div>
+        </div>
+        <!-- right -->
+        <div class="side side--right">
+            <h2 class="side-header">right</h2>
+            <!-- .side-box.right-box--$*16 -->
+            <div class="x4z4 side-box right-box--1">1</div>
+            <div class="x3z4 side-box right-box--2">2</div>
+            <div class="x2z4 side-box right-box--3">3</div>
+            <div class="x1z4 side-box right-box--4">4</div>
+            <div class="x4z3 side-box right-box--5">5</div>
+            <div class="x3z3 side-box right-box--6">6</div>
+            <div class="x2z3 side-box right-box--7">7</div>
+            <div class="x1z3 side-box right-box--8">8</div>
+            <div class="x4z2 side-box right-box--9">9</div>
+            <div class="x3z2 side-box right-box--10">10</div>
+            <div class="x2z2 side-box right-box--11">11</div>
+            <div class="x1z2 side-box right-box--12">12</div>
+            <div class="x4z1 side-box right-box--13">13</div>
+            <div class="x3z1 side-box right-box--14">14</div>
+            <div class="x2z1 side-box right-box--15">15</div>
+            <div class="x1z1 side-box right-box--16">16</div>
+        </div>
+    </div>
+    <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
+    <script src="script/script.js"></script>
+</body>
+</html>
