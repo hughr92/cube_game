@@ -1,6 +1,6 @@
 
 
-let turn = 'blue';
+let turn = 'blue'; 
 let turnColor = 'dodgerblue';
 
 const buttonText = 'button--text';
@@ -22,10 +22,6 @@ app.turnswap = function() {
     }
     
 }
-
-// 64 empty strings 
-// app.winCondition = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",]
-
 
 app.cells = [
     // ROW ONE
@@ -114,28 +110,7 @@ app.cells = [
     { x: 4, y: 1, z: 4, player: "" },
 ]
 
-
-
-// checking left-right or bottom-top (x/y)
-// 32 possible channels to check
-// app.checkCells = function(xVal, yVal, view){
-   
-//     console.log(`${view} view at x: ${xVal} and y: ${yVal}`); 
-
-//     for ( let i = 0; i<= 63; i ++ ){
-//         if (app.cells[i].x == xVal && app.cells[i].y == yVal) {
-//             // this checks the top
-//             console.log(app.cells[i]);
-            
-//         }
-//     }
-
-// }
-// DECLARE DEFAULT
-currentOrderY = 0;
-// let NewOrderY;
-// create array
-// let yArray = []
+let cellColor;
 
 app.checkCells = function (xVal, yVal, zVal) {
 
@@ -146,85 +121,79 @@ app.checkCells = function (xVal, yVal, zVal) {
 
     for (let i = 0; i <= 63; i++) {
         if (app.cells[i].x == xVal && app.cells[i].y == yVal && app.cells[i].player != "" ) {
-            // this checks the top
-            // it's stil selecting them all
+
             console.log('top check');
-            
-            console.log(app.cells[i]);
-            // $(`.x${app.cells[i].x}y${app.cells[i].y}z${app.cells[i].z}`).css('background', turnColor);
-            // console.log(`.x${app.cells[i].x}y${app.cells[i].y}z${app.cells[i].z}`);
-            
-            
+
+            cellColor = i;
 
         }
         if (app.cells[i].x == xVal && app.cells[i].z == zVal && app.cells[i].player != "" ){
             console.log('left/right side check');
 
-            // makes both sides change
-            $(`.x${app.cells[i].x}z${app.cells[i].z}`).css('background', turnColor);
-
             arrayY.push(app.cells[i].y);
-            // push except current clicked value
-            // get the largest number
-            // get the smallest number
-            // check if greater or equal to
-            // check if smaller or equal to
-            console.log(arrayY);
-            
-            
-            
-            
+            arrayX.push(app.cells[i].x);
 
-            
-            
-            
-            
-            
-            console.log(app.cells[i])
-            
-            // if (currentOrderY == 0){
-            //     $(`.x${app.cells[i].x}z${app.cells[i].z}`).css('background', turnColor);
-            // }
-            // NewOrderY = app.cells[i].y;
-            // console.log(NewOrderY);
-            
-            // if (NewOrderY > currentOrderY) {
-            //     $(`.x${app.cells[i].x}z${app.cells[i].z}.side-box-right`).css('background', turnColor);
-            //     currentOrderY = app.cells[i].y;
-            // } else {
-            //     $(`.x${app.cells[i].x}z${app.cells[i].z}.side-box-left`).css('background', turnColor);
-            //     currentOrderY = app.cells[i].y;
-            // }
-
-
-            // currentOrderY = app.cells[i].y;
-            // if y is low - left
-            // if y is high - right
-
-            // set another class for y - check the y value in the if satement
-            // eg - y-order1
-
-            // $(`.x${app.cells[i].x}z${app.cells[i].z}`).css('background', turnColor);
-
+            // console.log(cellColor);
+        
         }
         if (app.cells[i].y == yVal && app.cells[i].z == zVal && app.cells[i].player != "" ) {
             console.log('front/back side check');
             
-            console.log(app.cells[i])
-            
-            // if x is low - back
-            // if x is high - right
+            // console.log(app.cells[i])
 
-            // set another class for x - check the x value in the if satement
-            $(`.y${app.cells[i].y}z${app.cells[i].z}`).css('background', turnColor);
+            arrayY.push(app.cells[i].y);
+            arrayX.push(app.cells[i].x);
+
+            
+            
         }
+
+        
     }
 
+        // console.log(cellColor);
+        let maxX = Math.max(...arrayX);
+        // console.log('maxX');
+        // console.log(maxX);
+        let minX = Math.min(...arrayX);
+        // console.log('minX');
+        // console.log(minX);
+        let maxY = Math.max(...arrayY);
+        // console.log('maxY');
+        // console.log(maxY);
+        let minY = Math.min(...arrayY);
+        // console.log('minY');
+        // console.log(minY);
+
+        if (app.cells[cellColor].y >= maxY) {
+            // console.log('change right');
+            $(`.x${app.cells[cellColor].x}z${app.cells[cellColor].z}.right-box`).css('background', turnColor);
+            // console.log(`.x${app.cells[cellColor].x}z${app.cells[cellColor].z}.right-box`);
+
+        } if (app.cells[cellColor].y <= minY) {
+
+            // console.log('change left');
+            $(`.x${app.cells[cellColor].x}z${app.cells[cellColor].z}.left-box`).css('background', turnColor);
+            // console.log(`.x${app.cells[cellColor].x}z${app.cells[cellColor].z}.left-box`);
+
+        }
+
+        if (app.cells[cellColor].x >= maxX) {
+
+            // console.log('change front');
+            // console.log(`.y${app.cells[cellColor].y}z${app.cells[cellColor].z}.front-box`);
+
+            $(`.y${app.cells[cellColor].y}z${app.cells[cellColor].z}.front-box`).css('background', turnColor);
+
+        } if (app.cells[cellColor].x <= minX) {
+
+            // console.log('change back');
+            $(`.y${app.cells[cellColor].y}z${app.cells[cellColor].z}.back-box`).css('background', turnColor);
+            // console.log(`.y${app.cells[cellColor].y}z${app.cells[cellColor].z}.back-box`);
+
+        }  
+
 }
-
-
-// check the input fields (all sides)
-
 
 
 // check for styling - css
@@ -272,17 +241,12 @@ app.runFunction = (variable) => {
     let zindex = ((buttonNum - 1) * 4) + app.counters[buttonNum - 1].count;
 
 
-    // console.log(app.cells[zindex-1]);
-
-
     // assign the cell number a string of red/blue
     app.cells[zindex -1].player = turn;
 
-    console.log(app.cells[zindex -1].player);
+    // console.log(app.cells[zindex -1].player);
     
     
-    
-
     let botVal = app.counters[buttonNum - 1].bot;
     
     let leftVal = app.counters[buttonNum - 1].left;
@@ -290,7 +254,7 @@ app.runFunction = (variable) => {
 
     let item = `<div class="box box--${turn} box--left--${leftVal} box--bot--${botVal} ${zindex}">`;
 
-    console.log(buttonNum);
+    // console.log(buttonNum);
 
     // STILL IN THE WORKS - check before values change
     app.checkCells(app.cells[cellNum - 1].x, app.cells[cellNum - 1].y, app.cells[cellNum - 1].z);
@@ -328,40 +292,24 @@ app.runFunction = (variable) => {
     // increase botVal
     app.counters[buttonNum - 1].bot = app.counters[buttonNum - 1].bot + 2;
 
-
-    // for each - check each side and see if the cells have changed
-
-
-    // then check if win condition is met
 } 
 
 app.takeTurn = function () {
     button.on('click', function () {
 
         buttonNum = parseInt($(this).attr('id'));
-        console.log(buttonNum);
-        console.log('button number');
+        // console.log(buttonNum);
+        // console.log('button number');
 
         cellNum = ((buttonNum - 1) * 4) + app.counters[buttonNum - 1].count;
 
             $(this).css('background', turnColor);
 
-        // Change colour of tile, only if the count is below 4
-        // if (app.counters[cellNum].count < 4){
-        //     $(this).css('background', turnColor);
-        // }
-
-        // $(this `.button--text`).text(zindex);
-
         // RUN APPEND FUNCTION
         app.runFunction(app.counters[buttonNum - 1].count);
+
+        app.checkWin();
         
-        // // STILL IN THE WORKS
-        // app.checkCells(app.cells[cellNum - 1].x, app.cells[cellNum - 1].y, app.cells[cellNum - 1].z);
-
-        
-
-
     })
 }
 
@@ -377,9 +325,112 @@ let buttonNum = $(``);
 
 
 
-
 // put in doc reeady / init
 app.takeTurn();
+
+
+app.checkWin = function(){
+    
+    for (i = 1; i <= 20; i++){
+        let arrayBlue = [];
+        let arrayRed = [];
+        $(`.c${i}`).each(function () {
+
+            let winCondition = $(this).css('background-color');
+            
+            if (winCondition == 'rgb(30, 144, 255)'){                
+                // console.log(`c${i} blue`);   
+                arrayBlue.push('blue');
+                // console.log(arrayBlue);   
+                // console.log(arrayBlue.length);   
+                if (arrayBlue.length == 4){
+                    app.gameWin('blue');   
+                }    
+            } if (winCondition == 'rgb(255, 99, 71)') {
+                // console.log(`c${i} red`);  
+                arrayRed.push('red');
+                // console.log(arrayRed);    
+                if (arrayRed.length == 4) {
+                    app.gameWin('red');
+                } 
+            }
+            
+            
+            
+            
+        })
+    }
+
+    for (i = 1; i <= 20; i++) {
+        let arrayBlue = [];
+        let arrayRed = [];
+        $(`.r${i}`).each(function () {
+
+            let winCondition = $(this).css('background-color');
+
+            if (winCondition == 'rgb(30, 144, 255)') {
+                // console.log(`r${i} blue`);
+                arrayBlue.push('blue');
+                // console.log(arrayBlue);   
+                // console.log(arrayBlue.length);
+                if (arrayBlue.length == 4) {
+                    app.gameWin('blue');
+                }
+            } if (winCondition == 'rgb(255, 99, 71)') {
+                // console.log(`r${i} red`);
+                arrayRed.push('red');
+                // console.log(arrayRed);    
+                if (arrayRed.length == 4) {
+                    app.gameWin('red');
+                }
+            }
+
+
+
+
+        })
+    }
+
+    for (i = 1; i <= 10; i++) {
+        let arrayBlue = [];
+        let arrayRed = [];
+        $(`.d${i}`).each(function () {
+
+            let winCondition = $(this).css('background-color');
+
+            if (winCondition == 'rgb(30, 144, 255)') {
+                // console.log(`d${i} blue`);
+                arrayBlue.push('blue');
+                // console.log(arrayBlue);   
+                // console.log(arrayBlue.length);
+                if (arrayBlue.length == 4) {
+                    app.gameWin('blue');
+                }
+            } if (winCondition == 'rgb(255, 99, 71)') {
+                // console.log(`d${i} red`);
+                arrayRed.push('red');
+                // console.log(arrayRed);    
+                if (arrayRed.length == 4) {
+                    app.gameWin('red');
+                    console.log(turn);
+                    
+                }
+            }
+
+
+
+
+        })
+    }
+
+    
+
+
+}
+
+app.gameWin = function(player){
+    alert(`${player} player wins`)
+}
 
 
 
